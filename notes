@@ -48,3 +48,5 @@ if __name__ == "__main__":
 
 
 ####################
+I can use variables in decorators to create dynamic URLs. If I have @app.route("/username/<name>"), whatever the user types in where <name> goes, it will feed that input into the greet() function as the "name" value.
+The same thing with <int:number> but the "int" part of the code forces the input to be an integer.
