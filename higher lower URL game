@@ -1,0 +1,45 @@
+from flask import Flask
+import random
+
+app = Flask(__name__)
+
+colors = ["red", "blue", "orange"]
+
+
+@app.route("/")
+def hello_world():
+    return '<h1>Guess a number between 0 and 9</h1>' \
+           '<img src=https://media.giphy.com/media/3o7aCSPqXE5C6T8tBC/giphy.gif>'
+
+
+ran_num = random.randint(0, 9)
+
+
+@app.route("/<int:number>")
+def route(number):
+    if number > ran_num:
+        rand_color = random.choice(colors)
+        return f'<h1 style="color:{rand_color}">Too High! Try Again!</h1>' \
+               '<img src=https://media.giphy.com/media/LJiKbyNr5Jm62NdLGu/giphy.gif>'
+
+    if number < ran_num:
+        rand_color = random.choice(colors)
+        return f'<h1 style="color:{rand_color}">Too Low! Try Again!</h1>' \
+               '<img src=https://media.giphy.com/media/IIIg3ZHcOqYtW0wEIB/giphy.gif>'
+
+    if number == ran_num:
+        rand_color = random.choice(colors)
+        return f'<h1 style="color:{rand_color}">You got it right!</h1>' \
+               '<img src=https://media.giphy.com/media/gsNk6aZ7EcOsSSFNPW/giphy.gif>'
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+     
+##############
+created a home page telling the user to guess a number between 0 and 9
+used the random module to get a random number between 0 and 9
+the user would then enter into their url what their guess was 0-9
+an if statement would then check that number against the randomly generated number, and return a page of HTML code depending on if it was too high, low, or correct
+as a bonus, it would randomly select a color to use as the text color
