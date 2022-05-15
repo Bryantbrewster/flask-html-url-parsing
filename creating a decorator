@@ -1,0 +1,21 @@
+def logging_decorator(function):
+    def wrapper(*args, **kwargs):
+        print(f"You called {function.__name__}{args}")
+        result = function(args[0], args[1], args[2])
+        print(f"It returned: {result}")
+    return wrapper
+
+
+@logging_decorator
+def a_function(a, b, c):
+    return a * b * c
+    
+a_function(1, 2, 3)
+
+
+##########
+This decorator takes a function as the input
+Then in the wrapper function we input *args, **kwargs because the decorator function may be attached to a function with numerous inputs so this makes it dynamic and able to handle that
+remember, {function.__name__} will pull in the name of the function, "a_function" in this case,, and {args} will pull in the inputs for the function (1, 2, 3 in this cases)
+the wrapper fucntion then calls the function, inputting whatever was in argument pos #1, pos #2, and pos #3 and assigned that to the variable result
+the next line then prints out the result
